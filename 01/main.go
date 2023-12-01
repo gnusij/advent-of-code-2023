@@ -13,7 +13,7 @@ func f(d []string, N []string) {
 	for _, l := range d {
 		var S strings.Builder
 		for i := 0; i < len(l); i++ {
-			if l[i] >= '0' && l[i] <= '9' {
+			if _, err := strconv.Atoi(string(l[i])); err == nil {
 				S.WriteByte(l[i])
 			}
 			for j, n := range N {
@@ -31,11 +31,9 @@ func f(d []string, N []string) {
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
 	var d []string
-
 	for scanner.Scan() {
 		d = append(d, scanner.Text())
 	}
-
 	f(d, []string{})
 	f(d, []string{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"})
 }

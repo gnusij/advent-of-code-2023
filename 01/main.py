@@ -1,4 +1,3 @@
-d = open(0).read().split()
 def f(d, N):
     s = 0 
     for l in d:
@@ -11,5 +10,6 @@ def f(d, N):
                     S += str(j+1)
         s += int(S[0] + S[-1])
     print(s) 
+d = open(0).read().split()
 f(d,[])
 f(d,['one','two','three','four','five','six','seven','eight','nine'])
