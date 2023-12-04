@@ -1,32 +1,22 @@
 import re
 from collections import defaultdict
-D = open(0).read().split()
-d = [[t for t in d] for d in D]
-N = '0123456789'
-G = defaultdict(list)
-
-def c(y,x1,x2,n):
-    def g(j,i):
-        try: return d[j][i] 
-        except: return '.'
+d=open(0).read().split()
+s,S,G=0,0,defaultdict(list)
+def c(y,x,X,n):
     for j in range(y-1,y+2):
-        for i in range(x1-1,x2+1):
-            if j>=0 and i>=0:
-                if g(j ,i) == '*':
-                    G[(j,i)].append(n)
-                if g(j, i) not in N+'.': 
-                    return True
-    return False
-
-s = 0
-for j,line in enumerate(D):
-    for m in re.finditer(r'\d+', line):
-        n = int(m.group(0))
-        if c(j, m.start(), m.end(), n):
-            s += n
-
-S = 0
+        for i in range(x-1,X+1):
+            if j>=0 and i>=0 and j<len(d) and i<len(d[1]):
+                v=d[j][i]
+                if v=='*':G[(j,i)].append(n)
+                if v not in '012345679.': 
+                    return 1
+    return 0
+for j,l in enumerate(d):
+    for m in re.finditer(r'\d+', l):
+        n=int(m.group(0))
+        if c(j,m.start(),m.end(),n):
+            s+=n
 for k,v in G.items():
-    if len(v) == 2:
-        S += v[0] * v[1]
-print(s, S)
+    if len(v)==2:
+        S+=v[0]*v[1]
+print(s,S)
