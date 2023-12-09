@@ -1,38 +1,12 @@
-
-#d = [[int(x) for x in l] for l in open(0).read().splitlines()]
-
-
-d= [[*map(int, l.split())] for l in open(0).read().splitlines()]
-
-
-def findinc(l):
-    newlist = []
-    for i in range(1, len(l)):
-        newlist.append(l[i]-l[i-1])
-    return newlist
-
-
-s = 0
-S = 0
-for line in d:
-
-    newlist = line
-    seq = [line]
-    
-    while any(newlist):
-        newlist = findinc(newlist)
-        seq.append(newlist)
-
-    newval = sum([l[-1] for l in seq])
-
-    #print(seq)
-    tmps = 0
-    for i in range(len(seq))[::-1]:
-        #print(i, seq[i-1][0], tmps)
-        tmps = seq[i-1][0] - tmps
-    S += tmps*-1
-    print(seq, tmps)
-    #print(seq)
-
-    s += newval
+d=[[*map(int, l.split())] for l in open(0).read().splitlines()]
+s,S=0,0
+for n in d:
+    Q=[n]
+    while any(n:=[n[i]-n[i-1] for i in range(1,len(n))]):
+        Q+=[n]
+    s+=sum([n[-1] for n in Q])
+    t=0
+    for i in range(len(Q))[::-1]:
+        t=Q[i][0]-t
+    S+=t
 print(s,S)
