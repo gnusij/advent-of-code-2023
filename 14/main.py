@@ -1,8 +1,3 @@
-def show(d):
-    for i in range(len(d)):
-        print(''.join(d[i]))
-    print()
-
 d = [[t for t in l] for l in open(0).read().split()]
 
 def t(d):
@@ -61,8 +56,6 @@ def E(d):
         return E(t(d))
     else:
         return t(d)
-    
-    
 
 def load(d):
     load = 0
@@ -73,12 +66,6 @@ def load(d):
     return load
 
 print(load(N(d)))
-
-def array_equal(ar1, ar2):
-    for i in range(len(ar1)):
-        if ar1[i] != ar2[i]:
-            return False
-    return True 
 
 def cycle(d):
     d = N(d)
@@ -91,14 +78,9 @@ seen = []
 orig = ''.join([''.join(l) for l in d])
 seen.append(orig)
 
-repeat = 0
-rec = []
-rec.append(d)
-
 i = 1
 while True:
     d = cycle(d)
-    rec.append(d)
     txt = ''.join([''.join(l) for l in d])
 
     if txt in seen:
@@ -109,9 +91,7 @@ while True:
         seen.append(txt)
     i += 1
 
-
 for i in range((1000000000-start)%repeat):
     d = cycle(d)
-
 
 print(load(d))
